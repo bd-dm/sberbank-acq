@@ -1,6 +1,6 @@
 {
   "name": "sberbank-acq",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sberbank acquiring module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,11 +11,11 @@
     "build": "tsc",
     "test": "jest",
     "lint": "eslint . --ext .ts",
-    "prepare" : "npm run build",
-    "prepublishOnly" : "npm test && npm run lint",
-    "preversion" : "npm run lint",
-    "version" : "git add -A src",
-    "postversion" : "git push && git push --tags"
+    "prepare": "npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "repository": {
     "type": "git",
