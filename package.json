@@ -1,6 +1,6 @@
 {
   "name": "sberbank-acq",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Sberbank acquiring module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
