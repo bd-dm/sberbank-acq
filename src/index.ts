@@ -1,5 +1,5 @@
-export class SberbankAcquiring {
-  test(a: number, b: number): number {
-    return a + b + 1;
-  }
-}
+import SberbankAcquiring from './classes/SberbankAcquiring';
+
+export default {
+  SberbankAcquiring,
+};
