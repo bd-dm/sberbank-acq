@@ -31,6 +31,9 @@
     "url": "https://github.com/bd-dm/sberbank-acq/issues"
   },
   "homepage": "https://github.com/bd-dm/sberbank-acq#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "@typescript-eslint/eslint-plugin": "^4.13.0",
