@@ -1,7 +1,7 @@
 {
   "name": "sberbank-acq",
   "version": "0.1.2",
-  "description": "Sberbank acquiring module",
+  "description": "Sberbank acquiring module for Node.JS",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

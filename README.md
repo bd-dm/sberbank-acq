@@ -1,1 +1,1 @@
-# Sberbank acquiring module
+# Sberbank acquiring module for Node.JS
