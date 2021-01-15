@@ -15,6 +15,8 @@ import {
   ISberbankMethodResponseRegister,
   ISberbankMethodResponseRegisterPreAuth,
   ISberbankMethodResponseReverse,
+  ISberbankMethodOptionsVerifyEnrollment,
+  ISberbankMethodResponseVerifyEnrollment,
 } from '../types/SberbankAcquiring.interface';
 import SberbankRestService from './SberbankRestService';
 import { ISberbankRestServiceCredentials, ISberbankRestServiceMethod } from '../types/SberbankRestService.interface';
@@ -148,8 +150,20 @@ export default class SberbankAcquiring {
       });
   }
 
-  async verifyEnrollment() {
-    // const method = ISberbankRestServiceMethod.VERIFY_ENROLLMENT;
+  async verifyEnrollment(
+    options: ISberbankMethodOptionsVerifyEnrollment,
+  ): Promise<ISberbankMethodResponseVerifyEnrollment> {
+    const method = ISberbankRestServiceMethod.VERIFY_ENROLLMENT;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsVerifyEnrollment,
+      ISberbankMethodResponseVerifyEnrollment
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
   async decline() {

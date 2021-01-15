@@ -47,6 +47,8 @@ export type ISberbankPaymentWay =
 
 export type ISberbankOSType = 'ios' | 'android';
 
+export type ISberbankEnrollment = 'Y' | 'N' | 'U';
+
 export interface ISberbankMethodOptionsBase {
 
 }
@@ -156,6 +158,10 @@ export interface ISberbankMethodOptionsRefund extends ISberbankMethodOptionsBase
   amount: number;
 
   jsonParams?: string;
+}
+
+export interface ISberbankMethodOptionsVerifyEnrollment extends ISberbankMethodOptionsBase {
+  pan: string;
 }
 
 // REST METHODS RESPONSE
@@ -273,4 +279,10 @@ export interface ISberbankMethodResponseReverse extends ISberbankMethodResponseB
 
 export interface ISberbankMethodResponseRefund extends ISberbankMethodResponseBase {
 
+}
+
+export interface ISberbankMethodResponseVerifyEnrollment extends ISberbankMethodResponseBase {
+  enrolled?: ISberbankEnrollment;
+  emitterName?: string;
+  emitterCountryCode?: number;
 }
