@@ -18,11 +18,18 @@ export interface ISberbankAcquiringConfig {
   restConfig?: Partial<ISberbankRestServiceConfig>;
 }
 
-// REST METHODS OPTIONS
+export type ISberbankOSType = 'ios' | 'android';
 
 export interface ISberbankMethodOptionsBase {
 
 }
+
+export interface ISberbankMethodResponseBase {
+  errorCode?: number,
+  errorMessage?: string,
+}
+
+// REST METHODS OPTIONS
 
 export interface ISberbankMethodOptionsRegister extends ISberbankMethodOptionsBase {
   orderNumber: string;
@@ -43,14 +50,26 @@ export interface ISberbankMethodOptionsRegister extends ISberbankMethodOptionsBa
   features?: string;
   email?: string;
   phone?: string;
+
+  // app2app
+  app2app?: boolean,
+  app?: {
+    osType: ISberbankOSType,
+    deepLink: string,
+  },
+
+  // back2app
+  back2app?: boolean,
 }
 
 // REST METHODS RESPONSE
 
-export interface ISberbankMethodResponseBase {
-
-}
-
 export interface ISberbankMethodResponseRegister extends ISberbankMethodResponseBase {
-
+  orderId?: string;
+  formUrl?: string;
+  externalParams?: {
+    sbolInactive?: boolean;
+    sbolBankInvoiceId?: string;
+    sbolDeepLink?: string;
+  };
 }
