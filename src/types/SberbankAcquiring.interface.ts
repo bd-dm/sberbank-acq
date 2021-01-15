@@ -151,6 +151,13 @@ export interface ISberbankMethodOptionsReverse extends ISberbankMethodOptionsBas
   language?: string;
 }
 
+export interface ISberbankMethodOptionsRefund extends ISberbankMethodOptionsBase {
+  orderId: string;
+  amount: number;
+
+  jsonParams?: string;
+}
+
 // REST METHODS RESPONSE
 
 export interface ISberbankMethodResponseRegister extends ISberbankMethodResponseBase {
@@ -261,5 +268,9 @@ export interface ISberbankMethodResponseGetOrderStatusExtended extends ISberbank
 }
 
 export interface ISberbankMethodResponseReverse extends ISberbankMethodResponseBase {
+
+}
+
+export interface ISberbankMethodResponseRefund extends ISberbankMethodResponseBase {
 
 }

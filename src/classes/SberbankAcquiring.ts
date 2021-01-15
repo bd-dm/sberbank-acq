@@ -3,12 +3,18 @@ import {
   ISberbankAcquiringCredentials,
   ISberbankAcquiringNamePassCredentials,
   ISberbankAcquiringTokenCredentials,
-  ISberbankMethodOptionsDeposit, ISberbankMethodOptionsGetOrderStatusExtended,
+  ISberbankMethodOptionsDeposit,
+  ISberbankMethodOptionsGetOrderStatusExtended,
+  ISberbankMethodOptionsRefund,
+  ISberbankMethodResponseRefund,
   ISberbankMethodOptionsRegister,
-  ISberbankMethodOptionsRegisterPreAuth, ISberbankMethodOptionsReverse,
-  ISberbankMethodResponseDeposit, ISberbankMethodResponseGetOrderStatusExtended,
+  ISberbankMethodOptionsRegisterPreAuth,
+  ISberbankMethodOptionsReverse,
+  ISberbankMethodResponseDeposit,
+  ISberbankMethodResponseGetOrderStatusExtended,
   ISberbankMethodResponseRegister,
-  ISberbankMethodResponseRegisterPreAuth, ISberbankMethodResponseReverse,
+  ISberbankMethodResponseRegisterPreAuth,
+  ISberbankMethodResponseReverse,
 } from '../types/SberbankAcquiring.interface';
 import SberbankRestService from './SberbankRestService';
 import { ISberbankRestServiceCredentials, ISberbankRestServiceMethod } from '../types/SberbankRestService.interface';
@@ -110,8 +116,20 @@ export default class SberbankAcquiring {
       });
   }
 
-  async refund() {
-    // const method = ISberbankRestServiceMethod.REFUND;
+  async refund(
+    options: ISberbankMethodOptionsRefund,
+  ): Promise<ISberbankMethodResponseRefund> {
+    const method = ISberbankRestServiceMethod.REFUND;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsRefund,
+      ISberbankMethodResponseRefund
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
   async getOrderStatusExtended(
