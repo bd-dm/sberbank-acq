@@ -143,6 +143,14 @@ export type ISberbankMethodOptionsGetOrderStatusExtended =
   ISberbankMethodOptionsGetOrderStatusExtendedWithId |
   ISberbankMethodOptionsGetOrderStatusExtendedWithNumber;
 
+export interface ISberbankMethodOptionsReverse extends ISberbankMethodOptionsBase {
+  orderId: string;
+
+  amount?: number;
+  jsonParams?: string;
+  language?: string;
+}
+
 // REST METHODS RESPONSE
 
 export interface ISberbankMethodResponseRegister extends ISberbankMethodResponseBase {
@@ -250,4 +258,8 @@ export interface ISberbankMethodResponseGetOrderStatusExtended extends ISberbank
     amount?: number;
     date?: string;
   };
+}
+
+export interface ISberbankMethodResponseReverse extends ISberbankMethodResponseBase {
+
 }

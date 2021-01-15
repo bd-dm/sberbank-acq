@@ -5,10 +5,10 @@ import {
   ISberbankAcquiringTokenCredentials,
   ISberbankMethodOptionsDeposit, ISberbankMethodOptionsGetOrderStatusExtended,
   ISberbankMethodOptionsRegister,
-  ISberbankMethodOptionsRegisterPreAuth,
+  ISberbankMethodOptionsRegisterPreAuth, ISberbankMethodOptionsReverse,
   ISberbankMethodResponseDeposit, ISberbankMethodResponseGetOrderStatusExtended,
   ISberbankMethodResponseRegister,
-  ISberbankMethodResponseRegisterPreAuth,
+  ISberbankMethodResponseRegisterPreAuth, ISberbankMethodResponseReverse,
 } from '../types/SberbankAcquiring.interface';
 import SberbankRestService from './SberbankRestService';
 import { ISberbankRestServiceCredentials, ISberbankRestServiceMethod } from '../types/SberbankRestService.interface';
@@ -94,8 +94,20 @@ export default class SberbankAcquiring {
       });
   }
 
-  async reverse() {
-    // const method = ISberbankRestServiceMethod.REVERSE;
+  async reverse(
+    options: ISberbankMethodOptionsReverse,
+  ): Promise<ISberbankMethodResponseReverse> {
+    const method = ISberbankRestServiceMethod.REVERSE;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsReverse,
+      ISberbankMethodResponseReverse
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
   async refund() {
