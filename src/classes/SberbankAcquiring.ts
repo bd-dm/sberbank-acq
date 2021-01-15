@@ -25,7 +25,8 @@ import {
   ISberbankMethodResponseUnBindCard,
   ISberbankMethodOptionsBindCard,
   ISberbankMethodResponseBindCard,
-  ISberbankMethodOptionsGetBindings, ISberbankMethodResponseGetBindings,
+  ISberbankMethodOptionsGetBindings,
+  ISberbankMethodResponseGetBindings,
 } from '../types/SberbankAcquiring.interface';
 import SberbankRestService from './SberbankRestService';
 import { ISberbankRestServiceCredentials, ISberbankRestServiceMethod } from '../types/SberbankRestService.interface';
