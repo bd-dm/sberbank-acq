@@ -93,6 +93,11 @@ export interface ISberbankMethodOptionsRegisterPreAuth extends ISberbankMethodOp
   back2app?: boolean,
 }
 
+export interface ISberbankMethodOptionsDeposit extends ISberbankMethodOptionsBase {
+  orderId: string;
+  amount: number;
+}
+
 // REST METHODS RESPONSE
 
 export interface ISberbankMethodResponseRegister extends ISberbankMethodResponseBase {
@@ -113,4 +118,8 @@ export interface ISberbankMethodResponseRegisterPreAuth extends ISberbankMethodR
     sbolBankInvoiceId?: string;
     sbolDeepLink?: string;
   };
+}
+
+export interface ISberbankMethodResponseDeposit extends ISberbankMethodResponseBase {
+
 }

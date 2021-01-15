@@ -3,8 +3,10 @@ import {
   ISberbankAcquiringCredentials,
   ISberbankAcquiringNamePassCredentials,
   ISberbankAcquiringTokenCredentials,
+  ISberbankMethodOptionsDeposit,
   ISberbankMethodOptionsRegister,
   ISberbankMethodOptionsRegisterPreAuth,
+  ISberbankMethodResponseDeposit,
   ISberbankMethodResponseRegister,
   ISberbankMethodResponseRegisterPreAuth,
 } from '../types/SberbankAcquiring.interface';
@@ -48,13 +50,14 @@ export default class SberbankAcquiring {
     options: ISberbankMethodOptionsRegister,
   ): Promise<ISberbankMethodResponseRegister> {
     const method = ISberbankRestServiceMethod.REGISTER;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
 
     return this.restService.call<
       ISberbankMethodOptionsRegister,
       ISberbankMethodResponseRegister
       >({
         method,
-        credentials: SberbankAcquiring.getCredentialsForRestService(this.config.credentials),
+        credentials,
         data: options,
       });
   }
@@ -63,19 +66,32 @@ export default class SberbankAcquiring {
     options: ISberbankMethodOptionsRegisterPreAuth,
   ): Promise<ISberbankMethodResponseRegisterPreAuth> {
     const method = ISberbankRestServiceMethod.REGISTER_PRE_AUTH;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
 
     return this.restService.call<
       ISberbankMethodOptionsRegisterPreAuth,
       ISberbankMethodResponseRegisterPreAuth
       >({
         method,
-        credentials: SberbankAcquiring.getCredentialsForRestService(this.config.credentials),
+        credentials,
         data: options,
       });
   }
 
-  async deposit() {
-    // const method = ISberbankRestServiceMethod.DEPOSIT;
+  async deposit(
+    options: ISberbankMethodOptionsDeposit,
+  ): Promise<ISberbankMethodResponseDeposit> {
+    const method = ISberbankRestServiceMethod.DEPOSIT;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsDeposit,
+      ISberbankMethodResponseDeposit
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
   async reverse() {
