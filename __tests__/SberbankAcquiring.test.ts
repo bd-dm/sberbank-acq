@@ -1,5 +1,5 @@
-import { ISberbankAcquiringConfig } from '../dist/types/SberbankAcquiring.interface';
-import SberbankAcquiring from '../dist/classes/SberbankAcquiring';
+import { ISberbankAcquiringConfig } from '../src/types/SberbankAcquiring.interface';
+import SberbankAcquiring from '../src/classes/SberbankAcquiring';
 
 describe('Sberbank Acquiring', () => {
   const acquiringConfig: ISberbankAcquiringConfig = {

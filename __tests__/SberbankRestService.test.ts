@@ -1,5 +1,5 @@
 import { ISberbankRestServiceConfig } from '../src/types/SberbankRestService.interface';
-import SberbankRestService from '../dist/classes/SberbankRestService';
+import SberbankRestService from '../src/classes/SberbankRestService';
 
 describe('Sberbank Acquiring', () => {
   const restServiceConfig: ISberbankRestServiceConfig = {
