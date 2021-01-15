@@ -222,9 +222,11 @@ export interface ISberbankMethodOptionsGetReceiptStatus extends ISberbankMethodO
 }
 
 export interface ISberbankMethodOptionsUnBindCard extends ISberbankMethodOptionsBase {
+  bindingId: string;
 }
 
 export interface ISberbankMethodOptionsBindCard extends ISberbankMethodOptionsBase {
+  bindingId: string;
 }
 
 export interface ISberbankMethodOptionsGetBindings extends ISberbankMethodOptionsBase {
