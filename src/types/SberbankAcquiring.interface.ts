@@ -164,6 +164,21 @@ export interface ISberbankMethodOptionsVerifyEnrollment extends ISberbankMethodO
   pan: string;
 }
 
+export interface ISberbankMethodOptionsDecline extends ISberbankMethodOptionsBase {
+}
+
+export interface ISberbankMethodOptionsGetReceiptStatus extends ISberbankMethodOptionsBase {
+}
+
+export interface ISberbankMethodOptionsUnBindCard extends ISberbankMethodOptionsBase {
+}
+
+export interface ISberbankMethodOptionsBindCard extends ISberbankMethodOptionsBase {
+}
+
+export interface ISberbankMethodOptionsGetBindings extends ISberbankMethodOptionsBase {
+}
+
 // REST METHODS RESPONSE
 
 export interface ISberbankMethodResponseRegister extends ISberbankMethodResponseBase {
@@ -285,4 +300,19 @@ export interface ISberbankMethodResponseVerifyEnrollment extends ISberbankMethod
   enrolled?: ISberbankEnrollment;
   emitterName?: string;
   emitterCountryCode?: number;
+}
+
+export interface ISberbankMethodResponseDecline extends ISberbankMethodResponseBase {
+}
+
+export interface ISberbankMethodResponseGetReceiptStatus extends ISberbankMethodResponseBase {
+}
+
+export interface ISberbankMethodResponseUnBindCard extends ISberbankMethodResponseBase {
+}
+
+export interface ISberbankMethodResponseBindCard extends ISberbankMethodResponseBase {
+}
+
+export interface ISberbankMethodResponseGetBindings extends ISberbankMethodResponseBase {
 }
