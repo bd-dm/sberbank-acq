@@ -3,7 +3,10 @@ import {
   ISberbankAcquiringCredentials,
   ISberbankAcquiringNamePassCredentials,
   ISberbankAcquiringTokenCredentials,
-  ISberbankMethodOptionsRegister, ISberbankMethodResponseRegister,
+  ISberbankMethodOptionsRegister,
+  ISberbankMethodOptionsRegisterPreAuth,
+  ISberbankMethodResponseRegister,
+  ISberbankMethodResponseRegisterPreAuth,
 } from '../types/SberbankAcquiring.interface';
 import SberbankRestService from './SberbankRestService';
 import { ISberbankRestServiceCredentials, ISberbankRestServiceMethod } from '../types/SberbankRestService.interface';
@@ -56,8 +59,19 @@ export default class SberbankAcquiring {
       });
   }
 
-  async registerPreAuth() {
-    // const method = ISberbankRestServiceMethod.REGISTER_PRE_AUTH;
+  async registerPreAuth(
+    options: ISberbankMethodOptionsRegisterPreAuth,
+  ): Promise<ISberbankMethodResponseRegisterPreAuth> {
+    const method = ISberbankRestServiceMethod.REGISTER_PRE_AUTH;
+
+    return this.restService.call<
+      ISberbankMethodOptionsRegisterPreAuth,
+      ISberbankMethodResponseRegisterPreAuth
+      >({
+        method,
+        credentials: SberbankAcquiring.getCredentialsForRestService(this.config.credentials),
+        data: options,
+      });
   }
 
   async deposit() {
