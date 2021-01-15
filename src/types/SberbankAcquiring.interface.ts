@@ -164,8 +164,23 @@ export interface ISberbankMethodOptionsVerifyEnrollment extends ISberbankMethodO
   pan: string;
 }
 
-export interface ISberbankMethodOptionsDecline extends ISberbankMethodOptionsBase {
+interface ISberbankMethodOptionsDeclineBase extends ISberbankMethodOptionsBase {
+  merchantLogin: string;
+
+  language?: string;
 }
+
+interface ISberbankMethodOptionsDeclineWithId extends ISberbankMethodOptionsDeclineBase {
+  orderId: string;
+}
+
+interface ISberbankMethodOptionsDeclineWithNumber extends ISberbankMethodOptionsDeclineBase {
+  orderNumber: string;
+}
+
+export type ISberbankMethodOptionsDecline =
+  ISberbankMethodOptionsDeclineWithId |
+  ISberbankMethodOptionsDeclineWithNumber;
 
 export interface ISberbankMethodOptionsGetReceiptStatus extends ISberbankMethodOptionsBase {
 }
@@ -303,6 +318,7 @@ export interface ISberbankMethodResponseVerifyEnrollment extends ISberbankMethod
 }
 
 export interface ISberbankMethodResponseDecline extends ISberbankMethodResponseBase {
+  userMessage?: string;
 }
 
 export interface ISberbankMethodResponseGetReceiptStatus extends ISberbankMethodResponseBase {
