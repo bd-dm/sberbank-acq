@@ -17,6 +17,15 @@ import {
   ISberbankMethodResponseReverse,
   ISberbankMethodOptionsVerifyEnrollment,
   ISberbankMethodResponseVerifyEnrollment,
+  ISberbankMethodOptionsDecline,
+  ISberbankMethodResponseDecline,
+  ISberbankMethodOptionsGetReceiptStatus,
+  ISberbankMethodResponseGetReceiptStatus,
+  ISberbankMethodOptionsUnBindCard,
+  ISberbankMethodResponseUnBindCard,
+  ISberbankMethodOptionsBindCard,
+  ISberbankMethodResponseBindCard,
+  ISberbankMethodOptionsGetBindings, ISberbankMethodResponseGetBindings,
 } from '../types/SberbankAcquiring.interface';
 import SberbankRestService from './SberbankRestService';
 import { ISberbankRestServiceCredentials, ISberbankRestServiceMethod } from '../types/SberbankRestService.interface';
@@ -166,23 +175,83 @@ export default class SberbankAcquiring {
       });
   }
 
-  async decline() {
-    // const method = ISberbankRestServiceMethod.DECLINE;
+  async decline(
+    options: ISberbankMethodOptionsDecline,
+  ): Promise<ISberbankMethodResponseDecline> {
+    const method = ISberbankRestServiceMethod.DECLINE;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsDecline,
+      ISberbankMethodResponseDecline
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
-  async getReceiptStatus() {
-    // const method = ISberbankRestServiceMethod.GET_RECEIPT_STATUS;
+  async getReceiptStatus(
+    options: ISberbankMethodOptionsGetReceiptStatus,
+  ): Promise<ISberbankMethodResponseGetReceiptStatus> {
+    const method = ISberbankRestServiceMethod.GET_RECEIPT_STATUS;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsGetReceiptStatus,
+      ISberbankMethodResponseGetReceiptStatus
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
-  async unBindCard() {
-    // const method = ISberbankRestServiceMethod.UN_BIND_CARD;
+  async unBindCard(
+    options: ISberbankMethodOptionsUnBindCard,
+  ): Promise<ISberbankMethodResponseUnBindCard> {
+    const method = ISberbankRestServiceMethod.UN_BIND_CARD;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsUnBindCard,
+      ISberbankMethodResponseUnBindCard
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
-  async bindCard() {
-    // const method = ISberbankRestServiceMethod.BIND_CARD;
+  async bindCard(
+    options: ISberbankMethodOptionsBindCard,
+  ): Promise<ISberbankMethodResponseBindCard> {
+    const method = ISberbankRestServiceMethod.BIND_CARD;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsBindCard,
+      ISberbankMethodResponseBindCard
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
-  async getBindings() {
-    // const method = ISberbankRestServiceMethod.GET_BINDINGS;
+  async getBindings(
+    options: ISberbankMethodOptionsGetBindings,
+  ): Promise<ISberbankMethodResponseGetBindings> {
+    const method = ISberbankRestServiceMethod.GET_BINDINGS;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsGetBindings,
+      ISberbankMethodResponseGetBindings
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 }
