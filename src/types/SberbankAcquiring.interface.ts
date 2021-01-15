@@ -53,6 +53,38 @@ export interface ISberbankMethodOptionsBase {
 
 }
 
+export interface ISberbankReceiptOfd {
+  name?: string;
+  website?: string;
+  INN?: string;
+}
+
+export interface ISberbankReceipt {
+  receiptStatus: number;
+
+  uuid?: string;
+  // eslint-disable-next-line camelcase
+  shift_number?: number;
+  // eslint-disable-next-line camelcase
+  receipt_number?: number;
+  // eslint-disable-next-line camelcase
+  receipt_datetime?: string;
+  // eslint-disable-next-line camelcase
+  fn_number?: string;
+  // eslint-disable-next-line camelcase
+  ecr_registration_number?: string;
+  // eslint-disable-next-line camelcase
+  fiscal_document_number?: number;
+  // eslint-disable-next-line camelcase
+  fiscal_document_attribute?: string;
+  // eslint-disable-next-line camelcase
+  amount_total?: string;
+  // eslint-disable-next-line camelcase
+  serial_number?: string;
+  fnsSite?: string;
+  OFD?: ISberbankReceiptOfd;
+}
+
 export interface ISberbankMethodResponseBase {
   errorCode?: number,
   errorMessage?: string,
@@ -183,6 +215,10 @@ export type ISberbankMethodOptionsDecline =
   ISberbankMethodOptionsDeclineWithNumber;
 
 export interface ISberbankMethodOptionsGetReceiptStatus extends ISberbankMethodOptionsBase {
+  orderId?: string;
+  orderNumber?: string;
+  uuid?: string;
+  language?: string;
 }
 
 export interface ISberbankMethodOptionsUnBindCard extends ISberbankMethodOptionsBase {
@@ -322,6 +358,12 @@ export interface ISberbankMethodResponseDecline extends ISberbankMethodResponseB
 }
 
 export interface ISberbankMethodResponseGetReceiptStatus extends ISberbankMethodResponseBase {
+  orderNumber?: string;
+  orderId?: string;
+  daemonCode?: string;
+  // eslint-disable-next-line camelcase
+  ecr_registration_number?: string;
+  receipt?: ISberbankReceipt;
 }
 
 export interface ISberbankMethodResponseUnBindCard extends ISberbankMethodResponseBase {
