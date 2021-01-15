@@ -53,6 +53,12 @@ export interface ISberbankMethodOptionsBase {
 
 }
 
+export interface ISberbankBinding {
+  bindingId?: string;
+  maskedPan?: string;
+  expiryDate?: number;
+}
+
 export interface ISberbankReceiptOfd {
   name?: string;
   website?: string;
@@ -230,6 +236,7 @@ export interface ISberbankMethodOptionsBindCard extends ISberbankMethodOptionsBa
 }
 
 export interface ISberbankMethodOptionsGetBindings extends ISberbankMethodOptionsBase {
+  clientId: string;
 }
 
 // REST METHODS RESPONSE
@@ -369,10 +376,13 @@ export interface ISberbankMethodResponseGetReceiptStatus extends ISberbankMethod
 }
 
 export interface ISberbankMethodResponseUnBindCard extends ISberbankMethodResponseBase {
+
 }
 
 export interface ISberbankMethodResponseBindCard extends ISberbankMethodResponseBase {
+
 }
 
 export interface ISberbankMethodResponseGetBindings extends ISberbankMethodResponseBase {
+  bindings: ISberbankBinding[];
 }
