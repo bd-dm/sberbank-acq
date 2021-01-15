@@ -25,6 +25,7 @@
     "sberbank",
     "acquiring"
   ],
+  "type": "module",
   "author": "Dmitry Bardyshev",
   "license": "ISC",
   "bugs": {
