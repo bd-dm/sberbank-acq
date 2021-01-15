@@ -18,6 +18,33 @@ export interface ISberbankAcquiringConfig {
   restConfig?: Partial<ISberbankRestServiceConfig>;
 }
 
+export type ISberbankPaymentWay =
+  'CARD' |
+  'CARD_BINDING' |
+  'CARD_MOTO' |
+  'CARD_PRESENT' |
+  'SBRF_SBOL' |
+  'UPOP' |
+  'FILE_BINDING' |
+  'SMS_BINDING' |
+  'P2P' |
+  'P2P_BINDING' |
+  'PAYPAL' |
+  'MTS' |
+  'APPLE_PAY' |
+  'APPLE_PAY_BINDING' |
+  'ANDROID_PAY' |
+  'ANDROID_PAY_BINDING' |
+  'GOOGLE_PAY_CARD' |
+  'GOOGLE_PAY_CARD_BINDING' |
+  'GOOGLE_PAY_TOKENIZED' |
+  'GOOGLE_PAY_TOKENIZED_BINDING' |
+  'SAMSUNG_PAY' |
+  'SAMSUNG_PAY_BINDING' |
+  'IPOS' |
+  'SBERPAY' |
+  'SBERID';
+
 export type ISberbankOSType = 'ios' | 'android';
 
 export interface ISberbankMethodOptionsBase {
@@ -98,6 +125,24 @@ export interface ISberbankMethodOptionsDeposit extends ISberbankMethodOptionsBas
   amount: number;
 }
 
+interface ISberbankMethodOptionsGetOrderStatusExtendedBase extends ISberbankMethodOptionsBase {
+  language?: string;
+}
+
+interface ISberbankMethodOptionsGetOrderStatusExtendedWithId
+  extends ISberbankMethodOptionsGetOrderStatusExtendedBase {
+  orderId: string;
+}
+
+interface ISberbankMethodOptionsGetOrderStatusExtendedWithNumber
+  extends ISberbankMethodOptionsGetOrderStatusExtendedBase {
+  orderNumber: string;
+}
+
+export type ISberbankMethodOptionsGetOrderStatusExtended =
+  ISberbankMethodOptionsGetOrderStatusExtendedWithId |
+  ISberbankMethodOptionsGetOrderStatusExtendedWithNumber;
+
 // REST METHODS RESPONSE
 
 export interface ISberbankMethodResponseRegister extends ISberbankMethodResponseBase {
@@ -122,4 +167,87 @@ export interface ISberbankMethodResponseRegisterPreAuth extends ISberbankMethodR
 
 export interface ISberbankMethodResponseDeposit extends ISberbankMethodResponseBase {
 
+}
+
+interface ISberbankMethodResponseGetOrderStatusExtendedAttribute {
+  name?: string;
+  value?: string;
+
+  [key: string]: any;
+}
+
+interface ISberbankMethodResponseGetOrderStatusExtendedTransactionAttribute {
+  merchantIp?: string;
+  sbolBankInvoiceId?: string;
+}
+
+interface ISberbankMethodResponseGetOrderStatusExtendedMerchantOrderParam {
+  name?: string;
+  value?: string;
+}
+
+export interface ISberbankMethodResponseGetOrderStatusExtended extends ISberbankMethodResponseBase {
+  orderNumber: string;
+  actionCode: number;
+  actionCodeDescription: string;
+  amount: number;
+  date: number;
+  ip: string;
+
+  authDateTime?: number;
+  terminalId?: string;
+  currency?: string;
+  orderStatus?: number;
+  depositedDate?: number;
+  orderDescription?: string;
+  authRefNum?: string;
+  refundedDate?: string;
+  paymentWay?: ISberbankPaymentWay;
+  merchantOrderParams?: ISberbankMethodResponseGetOrderStatusExtendedMerchantOrderParam[];
+  cardAuthInfo?: {
+    paymentSystem: string;
+    productCategory: string;
+    product: string;
+
+    pan?: string;
+    maskedPan?: string;
+    expiration?: number;
+    cardholderName?: string;
+    approvalCode?: string;
+    chargeback?: string;
+    secureAuthInfo?: {
+      eci?: number;
+      cavv?: string;
+      xid?: string;
+    };
+  };
+  bindingInfo?: {
+    clientId?: string;
+    bindingId?: string;
+    authDateTime?: string;
+    terminalId?: string;
+  };
+  paymentAmountInfo?: {
+    approvedAmount?: number;
+    depositedAmount?: number;
+    refundedAmount?: number;
+    paymentState?: string;
+    feeAmount?: number;
+  };
+  bankInfo?: {
+    bankName?: string;
+    bankCountryCode?: string;
+    bankCountryName?: string;
+  };
+  payerData?: {
+    email?: string;
+  };
+  transactionAttributes?: ISberbankMethodResponseGetOrderStatusExtendedTransactionAttribute[];
+  attributes?: ISberbankMethodResponseGetOrderStatusExtendedAttribute[];
+  refunds?: {
+    referenceNumber?: number;
+    actionCode?: number;
+    amount?: number;
+    date?: string;
+  };
 }

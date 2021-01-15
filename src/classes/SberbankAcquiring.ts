@@ -3,10 +3,10 @@ import {
   ISberbankAcquiringCredentials,
   ISberbankAcquiringNamePassCredentials,
   ISberbankAcquiringTokenCredentials,
-  ISberbankMethodOptionsDeposit,
+  ISberbankMethodOptionsDeposit, ISberbankMethodOptionsGetOrderStatusExtended,
   ISberbankMethodOptionsRegister,
   ISberbankMethodOptionsRegisterPreAuth,
-  ISberbankMethodResponseDeposit,
+  ISberbankMethodResponseDeposit, ISberbankMethodResponseGetOrderStatusExtended,
   ISberbankMethodResponseRegister,
   ISberbankMethodResponseRegisterPreAuth,
 } from '../types/SberbankAcquiring.interface';
@@ -102,8 +102,20 @@ export default class SberbankAcquiring {
     // const method = ISberbankRestServiceMethod.REFUND;
   }
 
-  async getOrderStatusExtended() {
-    // const method = ISberbankRestServiceMethod.GET_ORDER_STATUS_EXTENDED;
+  async getOrderStatusExtended(
+    options: ISberbankMethodOptionsGetOrderStatusExtended,
+  ): Promise<ISberbankMethodResponseGetOrderStatusExtended> {
+    const method = ISberbankRestServiceMethod.GET_ORDER_STATUS_EXTENDED;
+    const credentials = SberbankAcquiring.getCredentialsForRestService(this.config.credentials);
+
+    return this.restService.call<
+      ISberbankMethodOptionsGetOrderStatusExtended,
+      ISberbankMethodResponseGetOrderStatusExtended
+      >({
+        method,
+        credentials,
+        data: options,
+      });
   }
 
   async verifyEnrollment() {
