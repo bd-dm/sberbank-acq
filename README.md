@@ -76,7 +76,7 @@ Give a ⭐️ if this project helped you!
 ## 📝 License
 
 Copyright © 2021 [Dmitry Bardyshev](https://github.com/bd-dm).<br />
-This project is [ISC](https://github.com/bd-dm/sberbank-acq/blob/master/LICENSE) licensed.
+This project is [MIT](https://github.com/bd-dm/sberbank-acq/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

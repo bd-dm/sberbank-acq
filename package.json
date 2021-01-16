@@ -27,7 +27,7 @@
   ],
   "type": "module",
   "author": "Dmitry Bardyshev",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/bd-dm/sberbank-acq/issues"
   },
